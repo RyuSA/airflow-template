@@ -113,7 +113,6 @@ for client_data in CLIENTS_METADATA:
         trigger_dag_id=trigger_dag_id,
         wait_for_completion=True,
         allowed_states=[State.SUCCESS, State.FAILED],
-        failed_states=['not-a-state'],
         execution_date='{{ data_interval_start }}',
         execution_timeout=datetime.timedelta(hours=2)
     )

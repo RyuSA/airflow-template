@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 logger.info("[main] start")
 
 # load json file
-with open('~/dags/model.json') as f:
+with open('/opt/airflow/dags/repo/model.json') as f:
     data = json.load(f)
     logger.info(data)
 
