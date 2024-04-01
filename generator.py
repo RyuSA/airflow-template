@@ -48,7 +48,7 @@ class Generator:
                 "email_on_retry": False,
                 "retries": 1,
                 "retry_delay": timedelta(minutes=5),
-                "is_paused_upon_creation": True,
+                "is_paused_upon_creation": False,
             },
             start_date=datetime(2021, 1, 1),
             schedule_interval='@hourly', 
@@ -75,10 +75,38 @@ class Generator:
                 dag=dag
             )
 
+            t3 = BigQueryExecuteQueryOperator(
+                task_id='query3',
+                sql='resources/query.sql',
+                use_legacy_sql=False,
+                dag=dag
+            )
+
+            t4 = BigQueryExecuteQueryOperator(
+                task_id='query4',
+                sql='resources/query.sql',
+                use_legacy_sql=False,
+                dag=dag
+            )
+
+            t5 = BigQueryExecuteQueryOperator(
+                task_id='query5',
+                sql='resources/query.sql',
+                use_legacy_sql=False,
+                dag=dag
+            )
+
+            t6 = BigQueryExecuteQueryOperator(
+                task_id='query6',
+                sql='resources/query.sql',
+                use_legacy_sql=False,
+                dag=dag
+            )
+            
             pull = PythonOperator(
                 task_id='python',
                 python_callable=python_callable,
                 dag=dag
             )
 
-            push >> t1 >> t2 >> pull
+            push >> t1 >> t2 >> t3 >> t4 >> t5 >> t6 >> pull
