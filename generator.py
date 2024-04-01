@@ -51,7 +51,7 @@ class Generator:
                 "is_paused_upon_creation": False,
             },
             start_date=datetime(2021, 1, 1),
-            schedule_interval='@hourly', 
+            schedule_interval='*/10 * * * *', 
             catchup=False,
             tags=["danger"],
         ) as dag:
