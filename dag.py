@@ -4,8 +4,7 @@ from datetime import datetime, timedelta
 from airflow.models.dag import DAG
 from airflow.operators.bash import BashOperator
 
-with DAG(
-    "tutorial",
+with DAG("tutorial",
     default_args={
         "depends_on_past": False,
         "email_on_failure": False,
@@ -14,9 +13,9 @@ with DAG(
         "retry_delay": timedelta(minutes=5),
     },
     description="A simple tutorial DAG",
-    start_date=datetime(2021, 1, 1),
+    start_date=datetime(2023, 1, 1),
     catchup=False,
-    tags=["my_test"],
+    tags=["example"],
 ) as dag:
     t1 = BashOperator(
         task_id="print_date",

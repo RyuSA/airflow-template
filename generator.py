@@ -6,7 +6,6 @@ from airflow.providers.google.cloud.operators.bigquery import BigQueryExecuteQue
 from airflow.operators.python import (
     PythonOperator,
 )
-from env import Env
 import logging
 
 logger = logging.getLogger(__name__)
@@ -37,9 +36,6 @@ class Generator:
         self.name = name
 
     def generate(self):
-        from env import Env
-        env = Env()
-
         with DAG(
             dag_id=self.name+"_generated",
             default_args={
@@ -63,42 +59,42 @@ class Generator:
 
             t1 = BigQueryExecuteQueryOperator(
                 task_id='query',
-                sql='resources/query.sql',
+                sql='SELECT 1',
                 use_legacy_sql=False,
                 dag=dag
             )
 
             t2 = BigQueryExecuteQueryOperator(
                 task_id='query2',
-                sql='resources/query.sql',
+                sql='SELECT 1',
                 use_legacy_sql=False,
                 dag=dag
             )
 
             t3 = BigQueryExecuteQueryOperator(
                 task_id='query3',
-                sql='resources/query.sql',
+                sql='SELECT 1',
                 use_legacy_sql=False,
                 dag=dag
             )
 
             t4 = BigQueryExecuteQueryOperator(
                 task_id='query4',
-                sql='resources/query.sql',
+                sql='SELECT 1',
                 use_legacy_sql=False,
                 dag=dag
             )
 
             t5 = BigQueryExecuteQueryOperator(
                 task_id='query5',
-                sql='resources/query.sql',
+                sql='SELECT 1',
                 use_legacy_sql=False,
                 dag=dag
             )
 
             t6 = BigQueryExecuteQueryOperator(
                 task_id='query6',
-                sql='resources/query.sql',
+                sql='SELECT 1',
                 use_legacy_sql=False,
                 dag=dag
             )
